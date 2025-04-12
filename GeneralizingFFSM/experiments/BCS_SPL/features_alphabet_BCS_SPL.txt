@@ -1,0 +1,8 @@
+All Features: Status_LED, LED_Finger_Protection, LED_Power_Window, Manual_Power_Window, Automatic_Power_Window, Central_Locking_System
+Common Features: Human_Machine_Interface, Door_System, Power_Window, Finger_Protection
+Common Alphabet: finger_detected, pw_but_dn
+LED_Finger_Protection: fp_off, fp_on
+LED_Power_Window: pw_mv_dn, release_pw_but, pw_mv_up, pw_auto_mv_stop, pw_auto_mv_dn, pw_auto_mv_up
+Manual_Power_Window: fp_off, pw_pos_up, pw_but_up, mpw_stop, pw_pos_dn, fp_on, receiveMsg, m_pw_msg, pw_but_dn, pw_mv_up, pw_mv_dn
+Automatic_Power_Window: fp_off, pw_pos_up, a_pw_msg, pw_but_up, pw_pos_dn, fp_on, apw_stop, receiveMsg, pw_but_dn, pw_auto_mv_up, pw_auto_mv_dn, pw_auto_mv_stop
+Central_Locking_System: key_pos_unlock, key_pos_lock

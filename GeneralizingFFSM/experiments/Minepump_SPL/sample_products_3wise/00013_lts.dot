@@ -1,0 +1,36 @@
+digraph G {
+rankdir=LR;
+state0[ label = "s6", style=filled, color=green ];
+state0 -> state1 [ label=" receiveMsg " ];
+state1 [ label = "s7" ];
+state1 -> state2 [ label=" palarmMsg " ];
+state1 -> state3 [ label=" levelMsg " ];
+state3 [ label = "s20" ];
+state3 -> state4 [ label=" highLevel " ];
+state5 [ label = "s22" ];
+state5 -> state6 [ label=" setReady " ];
+state5 -> state6 [ label=" setMethaneStop " ];
+state4 [ label = "s21" ];
+state4 -> state7 [ label=" isMethaneStop " ];
+state4 -> state7 [ label=" isStopped " ];
+state4 -> state7 [ label=" isRunning " ];
+state4 -> state5 [ label=" isReady " ];
+state8 [ label = "s24" ];
+state8 -> state9 [ label=" pumpStart " ];
+state6 [ label = "s23" ];
+state6 -> state7 [ label=" isNotReady " ];
+state6 -> state8 [ label=" isReady " ];
+state7 [ label = "s26" ];
+state7 -> state0 [ label=" end " ];
+state9 [ label = "s25" ];
+state9 -> state7 [ label=" setRunning " ];
+state10 [ label = "s17" ];
+state10 -> state11 [ label=" pumpStop " ];
+state2 [ label = "s16" ];
+state2 -> state11 [ label=" isNotRunning " ];
+state2 -> state10 [ label=" isRunning " ];
+state12 [ label = "s19" ];
+state12 -> state0 [ label=" end " ];
+state11 [ label = "s18" ];
+state11 -> state12 [ label=" setMethaneStop " ];
+}

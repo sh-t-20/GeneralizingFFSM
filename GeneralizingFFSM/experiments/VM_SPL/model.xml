@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="showhiddenfeatures" value="true"/>
+		<graphics key="legendposition" value="554,26"/>
+		<graphics key="legendautolayout" value="false"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="VM">
+			<description>Inputs={sugar@[VM];no_sugar@[VM];display_done@[VM];cup_taken@[VM];coffee@[COF];coffee@[CAP];cap@[CAP];pour_sugar@[COF];tea@[TEA];pour_tea@[TEA];pour_coffee@[COF or CAP];pour_milk@[CAP];ring@[TON];euro@[EUR];dollar@[DOL]}</description>
+			<or abstract="true" mandatory="true" name="BEV">
+				<feature name="COF"/>
+				<feature name="TEA"/>
+				<feature name="CAP"/>
+			</or>
+			<feature name="TON"/>
+			<alt abstract="true" mandatory="true" name="CUR">
+				<feature name="EUR"/>
+				<feature name="DOL"/>
+			</alt>
+		</and>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>CAP</var>
+				<var>TON</var>
+			</imp>
+		</rule>
+	</constraints>
+</featureModel>

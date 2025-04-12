@@ -1,0 +1,35 @@
+digraph G {
+rankdir=LR;
+state0[ label = "s6", style=filled, color=green ];
+state0 -> state1 [ label=" receiveMsg " ];
+state1 [ label = "s7" ];
+state1 -> state2 [ label=" levelMsg " ];
+state1 -> state3 [ label=" commandMsg " ];
+state3 [ label = "s8" ];
+state3 -> state4 [ label=" startCmd " ];
+state2 [ label = "s20" ];
+state2 -> state5 [ label=" highLevel " ];
+state6 [ label = "s22" ];
+state6 -> state7 [ label=" setReady " ];
+state5 [ label = "s21" ];
+state5 -> state8 [ label=" isStopped " ];
+state5 -> state8 [ label=" isRunning " ];
+state5 -> state6 [ label=" isReady " ];
+state4 [ label = "s13" ];
+state4 -> state9 [ label=" isReady " ];
+state4 -> state9 [ label=" isRunning " ];
+state4 -> state10 [ label=" isNotRunning " ];
+state11 [ label = "s24" ];
+state11 -> state12 [ label=" pumpStart " ];
+state7 [ label = "s23" ];
+state7 -> state8 [ label=" isNotReady " ];
+state7 -> state11 [ label=" isReady " ];
+state9 [ label = "s15" ];
+state9 -> state0 [ label=" end " ];
+state8 [ label = "s26" ];
+state8 -> state0 [ label=" end " ];
+state10 [ label = "s14" ];
+state10 -> state9 [ label=" setReady " ];
+state12 [ label = "s25" ];
+state12 -> state8 [ label=" setRunning " ];
+}

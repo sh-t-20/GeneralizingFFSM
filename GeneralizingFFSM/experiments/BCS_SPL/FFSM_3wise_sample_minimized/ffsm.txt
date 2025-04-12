@@ -1,0 +1,4 @@
+s0@[()] -- fp_on@[(-LED_Finger_Protection)]/pw_mv_stop -> s1@[()]
+s0@[()] -- fp_on@[(LED_Finger_Protection)]/pw_mv_stop,led_fp_on -> s2@[()]
+s1@[()] -- finger_detected@[()]/fp_on -> s0@[()]
+s2@[()] -- finger_detected@[()]/fp_on -> s0@[()]

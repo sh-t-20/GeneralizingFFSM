@@ -1,0 +1,9 @@
+All Features: COF, TEA, CAP, TON, EUR, DOL
+Common Features: VM, BEV, CUR
+Common Alphabet: sugar, no_sugar, display_done, pour_sugar, cup_taken
+EUR: euro
+DOL: dollar
+TEA: tea, pour_tea
+COF: coffee, pour_coffee
+CAP: cap, pour_coffee, pour_milk
+TON: ring
