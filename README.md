@@ -21,8 +21,8 @@ The type of the similarity metric is determined using the ``algorithm_version`` 
 An implementation of the global similarity metric [6] was provided in [4,5], and an implementation of the local similarity metric [6] was provided in [7] which we used for constructing the FFSM models.
 The implementation of the BFS-based similarity metric is provided in the current paper.
 In this experiment, the order of merging the FSMs should be specified.
-The product FSMs are sorted in ascending order of their number of state.
-According to this merging order, the indexes of the sample products are stored in the ``product_order`` array.
+The product FSMs are sorted in ascending order of their number of states.
+According to this merging order, the indices of the sample products are stored in the ``product_order`` array.
 
 The parameters $t$, $r$, and $k$ of the FFSM<sub>Diff</sub> algorithm are specified using the variable ``T_value``, ``R_value``, and ``K_value``, respectively.
 In these experiments $t=0.5$, $r=1.4$, and $k=0.5$ (based on the results of [6]).
@@ -34,7 +34,7 @@ The FFSMs constructed by model merging are generalized using the ``GeneralizeFFS
 * -fm: The "xml" file of the feature model
 * -ffsm: The file of the FFSM to be generalized (in "txt" format)
 * -out: The output directory for storing the generalized FFSM
-* -alphabet: The alphabet of the features (the alphabet of the features of each subject systems is provided in its corresponding directory in the ``experiments`` folder.)
+* -alphabet: The alphabet of the features (the alphabet of the features of each subject system is provided in its corresponding directory in the ``experiments`` folder.)
 * -no\_loop: If this parameter is set to $\mathit{true}$, the self-loops will be removed from the generalized FFSM. In this way, the resulting FFSM will be smaller in size and easier to evaluate.
 
 The type of the generalization method is determined using the ``generalization_method`` integer variable as follows.
@@ -65,9 +65,9 @@ To compare the structure of two state machines, the ``CompareStructure`` class i
 
 In this class, the structures of two state machines are compared using the FFSM<sub>Diff</sub> algorithm, and the Precision, Recall, and F1 are reported.
 
-## Evaluating a generalized FFSM
+## Evaluating a Generalized FFSM
 
-To evaluate a generalized FFSM, this FFSM is projected onto the configurations of the out-of-sample products which is converted to a DFSM. Then, the resulting FSMs are compared with the FSMs of the corresponding products (structural comparison). To carry out these steps, the ``EvaluateGeneralizedFFSM`` class in ``fml`` package should be run using the following parameters.
+To evaluate a generalized FFSM, this FFSM is projected onto the configurations of the out-of-sample products which is converted to a DFSM. Then, the resulting FSMs are compared with the FSMs of the corresponding products (structural comparison). To carry out these steps, the ``EvaluateGeneralizedFFSM`` class in the ``fml`` package should be run using the following parameters.
 
 * -fm: The "xml" file of the feature model
 * -ffsm: The generalized FFSM (in "txt" format)
