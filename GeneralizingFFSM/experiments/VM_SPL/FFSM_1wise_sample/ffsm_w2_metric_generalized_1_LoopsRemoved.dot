@@ -16,8 +16,6 @@ digraph g {
 	s13 [shape="circle" label="13@[()]"];
 	s14 [shape="circle" label="14@[()]"];
 	s15 [shape="circle" label="15@[()]"];
-	s16 [shape="circle" label="16@[()]"];
-	s17 [shape="circle" label="17@[()]"];
 	s0 -> s1 [label="dollar / ok() [((DOL))]"];
 	s0 -> s2 [label="euro / ok() [((EUR))]"];
 	s1 -> s3 [label="no_sugar / ok() [()]"];
@@ -28,19 +26,18 @@ digraph g {
 	s4 -> s6 [label="cap / ok() [((CAP))]"];
 	s5 -> s7 [label="pour_milk / ok() [((CAP))]"];
 	s6 -> s5 [label="pour_sugar / ok() [()]"];
-	s7 -> s8 [label="pour_coffee / ok() [((CAP and not COF))]"];
+	s7 -> s8 [label="pour_coffee / ok() [((CAP and not COF) or (COF and not CAP))]"];
 	s8 -> s9 [label="display_done / ok() [()]"];
+	s9 -> s0 [label="cup_taken / ok() [()]"];
 	s9 -> s10 [label="ring / ok() [((TON))]"];
 	s10 -> s0 [label="cup_taken / ok() [()]"];
-	s11 -> s13 [label="coffee / ok() [((COF))]"];
-	s11 -> s14 [label="tea / ok() [((TEA))]"];
-	s12 -> s15 [label="coffee / ok() [((COF))]"];
-	s12 -> s16 [label="tea / ok() [((TEA))]"];
-	s13 -> s17 [label="pour_coffee / ok() [((COF and not CAP))]"];
-	s14 -> s17 [label="pour_tea / ok() [((TEA))]"];
+	s11 -> s7 [label="coffee / ok() [((COF))]"];
+	s11 -> s13 [label="tea / ok() [((TEA))]"];
+	s12 -> s14 [label="coffee / ok() [((COF))]"];
+	s12 -> s15 [label="tea / ok() [((TEA))]"];
+	s13 -> s8 [label="pour_tea / ok() [((TEA))]"];
+	s14 -> s7 [label="pour_sugar / ok() [()]"];
 	s15 -> s13 [label="pour_sugar / ok() [()]"];
-	s16 -> s14 [label="pour_sugar / ok() [()]"];
-	s17 -> s10 [label="display_done / ok() [()]"];
 	__start0 [label="" shape="none" width="0" height="0"];
 	__start0 -> s0;
 }

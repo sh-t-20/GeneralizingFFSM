@@ -50,7 +50,7 @@ public class FfsmSize {
 
 			for (File a : ffsm_files) {
 				String file_name = a.getName();
-				if (file_name.endsWith("txt")) {
+				if (file_name.contains("generalized") && file_name.endsWith("txt")) {
 					System.out.println("\n" + file_name);
 					IConfigurableFSM<String, Word<String>> ffsm = FeaturedMealyUtils.getInstance().loadFeaturedMealy(a,
 							feature_model);
@@ -83,31 +83,44 @@ public class FfsmSize {
 
 	private static double nondeterministicTransitionsRatio(IConfigurableFSM<String, Word<String>> ffsm_1) {
 		// TODO Auto-generated method stub
-		int nondeterministic_transitions_count = 0;
-		int transitions_count = 0;
+		int nondeterministic_transition_type_count = 0;
+		int transition_type_count = 0;
 		List<Integer> states_1 = ffsm_1.getStateIDs();
 
 		for (Integer s : states_1) {
 			Map<String, List<SimplifiedTransition<String, Word<String>>>> s_transitions = ffsm_1
 					.getSimplifiedTransitions(s);
 //			System.out.println("\nstate:" + s + ", number of inputs:" + s_transitions.size());
-			transitions_count += s_transitions.size();
+			for (Entry<String, List<SimplifiedTransition<String, Word<String>>>> t : s_transitions.entrySet()) {
+				if (!t.getValue().isEmpty()) {
+					transition_type_count += 1;
+				}
+			}
+
 			for (Entry<String, List<SimplifiedTransition<String, Word<String>>>> t : s_transitions.entrySet()) {
 				List<SimplifiedTransition<String, Word<String>>> list_1 = t.getValue();
-//				System.out.println("number of transitions with this input:" + list_1.size());
-				if (list_1.size() > 1)
-					nondeterministic_transitions_count += 1;
-//				for (SimplifiedTransition<String, Word<String>> transition : list_1) {
-//					System.out.println("state:" + s + ", input:" + transition.getIn() + ", Si: " + transition.getSi()
-//							+ ", Sj: " + transition.getSj());
-//				}
+
+				// Filter out self-loops
+				List<SimplifiedTransition<String, Word<String>>> nonLoopTransitions = new ArrayList<>();
+				for (SimplifiedTransition<String, Word<String>> trans : list_1) {
+					if (!trans.getSi().equals(trans.getSj())) {
+						nonLoopTransitions.add(trans);
+					}
+				}
+
+				// Now check if there are multiple non-loop transitions, indicating
+				// nondeterminism
+				if (nonLoopTransitions.size() > 1) {
+					nondeterministic_transition_type_count += 1;
+				}
 			}
+
 		}
-		System.out.println("Number of nondeterministic transitions:" + nondeterministic_transitions_count);
-		System.out.println("Number of transitions:" + transitions_count);
+		System.out.println("Number of nondeterministic transition types:" + nondeterministic_transition_type_count);
+		System.out.println("Number of transition types:" + transition_type_count);
 		double ratio = 0;
-		if (transitions_count != 0) {
-			ratio = (double) nondeterministic_transitions_count / transitions_count;
+		if (transition_type_count != 0) {
+			ratio = (double) nondeterministic_transition_type_count / transition_type_count;
 		}
 		return ratio;
 	}

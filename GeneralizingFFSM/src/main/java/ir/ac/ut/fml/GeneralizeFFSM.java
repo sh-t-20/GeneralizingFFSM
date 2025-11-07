@@ -75,9 +75,9 @@ public class GeneralizeFFSM {
 					fm);
 
 			File features_alphabet_file = new File(line.getOptionValue(ALPHABET));
-			String features_alphabet_string = ConvertToString(features_alphabet_file);
+			String features_alphabet_string = convertToString(features_alphabet_file);
 //			System.out.println("features_alphabet_string: " + features_alphabet_string);
-			Map<String, List<String>> features_alphabet = GetFeaturesAlphabet(features_alphabet_string);
+			Map<String, List<String>> features_alphabet = getFeaturesAlphabet(features_alphabet_string);
 			List<String> all_features = features_alphabet.get("All Features");
 			Set<String> features = features_alphabet.keySet();
 
@@ -139,10 +139,10 @@ public class GeneralizeFFSM {
 						// When generalization_method == 1 or when the transition is deterministic
 						if (generalization_method == 1 || (generalization_method != 1 && count <= 1)) {
 							Set<String> features_set = new HashSet<>(features);
-							removable_features = FindRemovableFeatures(input, features_alphabet, features_set);
+							removable_features = findRemovableFeatures(input, features_alphabet, features_set);
 							System.out.println("removable_features:\n" + removable_features);
-							Node condition_1_2 = CompleteCondition(condition_1_1, all_features, features_alphabet);
-							Node condition_2 = SimplifyTransition(condition_1_2, removable_features);
+							Node condition_1_2 = completeCondition(condition_1_1, all_features, features_alphabet);
+							Node condition_2 = simplifyTransition(condition_1_2, removable_features);
 							c_transition.setCondition(condition_2);
 						}
 
@@ -212,7 +212,7 @@ public class GeneralizeFFSM {
 							for (SimplifiedTransition<String, Word<String>> t_1 : next_transitions) {
 								String input_next = t_1.getIn();
 								Set<String> features_set = new HashSet<>(features);
-								removable_features_next = FindRemovableFeatures(input_next, features_alphabet,
+								removable_features_next = findRemovableFeatures(input_next, features_alphabet,
 										features_set);
 								for (String feature : all_features) {
 									if (!removable_features_next.contains(feature)) {
@@ -234,11 +234,11 @@ public class GeneralizeFFSM {
 							Node condition_1_1 = c_t.getCondition();
 							List<String> removable_features = new ArrayList<>();
 							Set<String> features_set = new HashSet<>(features);
-							removable_features = FindRemovableFeatures(input, features_alphabet, features_set);
+							removable_features = findRemovableFeatures(input, features_alphabet, features_set);
 							removable_features.removeAll(non_removable_features);
 							System.out.println("removable_features:\n" + removable_features);
-							Node condition_1_2 = CompleteCondition(condition_1_1, all_features, features_alphabet);
-							Node condition_2 = SimplifyTransition(condition_1_2, removable_features);
+							Node condition_1_2 = completeCondition(condition_1_1, all_features, features_alphabet);
+							Node condition_2 = simplifyTransition(condition_1_2, removable_features);
 							c_t.setCondition(condition_2);
 							same_input_transitions.remove(t);
 						}
@@ -299,7 +299,7 @@ public class GeneralizeFFSM {
 		return list_2;
 	}
 
-	private static Node CompleteCondition(Node c_1, List<String> all_features,
+	private static Node completeCondition(Node c_1, List<String> all_features,
 			Map<String, List<String>> features_alphabet_1) {
 		// TODO Auto-generated method stub
 //		System.out.println("Complete condition:");
@@ -340,7 +340,7 @@ public class GeneralizeFFSM {
 		return c_2;
 	}
 
-	private static List<String> FindRemovableFeatures(String input_1, Map<String, List<String>> features_alphabet_1,
+	private static List<String> findRemovableFeatures(String input_1, Map<String, List<String>> features_alphabet_1,
 			Set<String> features_1) {
 		// TODO Auto-generated method stub
 //		System.out.println("features_1:\n" + features_1);
@@ -394,7 +394,7 @@ public class GeneralizeFFSM {
 		return result;
 	}
 
-	private static Map<String, List<String>> GetFeaturesAlphabet(String f_alphabet_string) {
+	private static Map<String, List<String>> getFeaturesAlphabet(String f_alphabet_string) {
 		// TODO Auto-generated method stub
 		Map<String, List<String>> result = new HashMap<String, List<String>>();
 		@SuppressWarnings("resource")
@@ -412,7 +412,7 @@ public class GeneralizeFFSM {
 		return result;
 	}
 
-	private static String ConvertToString(File string_file) {
+	private static String convertToString(File string_file) {
 		// TODO Auto-generated method stub
 		StringBuilder builder = new StringBuilder();
 		try (BufferedReader buffer = new BufferedReader(new FileReader(string_file.getAbsolutePath()))) {
@@ -432,7 +432,7 @@ public class GeneralizeFFSM {
 		return null;
 	}
 
-	private static Node SimplifyTransition(Node c_1, List<String> r_features) {
+	private static Node simplifyTransition(Node c_1, List<String> r_features) {
 		// TODO Auto-generated method stub
 		c_1 = c_1.toDNF();
 		System.out.println("c_1:\n" + c_1);

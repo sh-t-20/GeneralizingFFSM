@@ -5,7 +5,6 @@ import java.io.File;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 public class GeneralizeMultipleFFSMs {
@@ -22,9 +21,6 @@ public class GeneralizeMultipleFFSMs {
 			// create the Options
 			Options options = createOptions();
 
-			// automatically generate the help statement
-			HelpFormatter formatter = new HelpFormatter();
-
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
 
@@ -35,6 +31,7 @@ public class GeneralizeMultipleFFSMs {
 
 //			String[] similarity_metrics = { "global_metric", "w2_metric", "bfs_metric" };
 			String[] similarity_metrics = { "w2_metric", "bfs_metric" };
+//			String[] similarity_metrics = { "w2_metric"};
 			for (String similarity_metric : similarity_metrics) {
 				String ffsm_string = dir_string + File.separator + "ffsm_" + similarity_metric + ".txt";
 
@@ -43,8 +40,8 @@ public class GeneralizeMultipleFFSMs {
 
 				System.out.println(ffsm_string);
 
-				GeneralizeFFSM test = new GeneralizeFFSM();
-				test.main(args_2);
+//				GeneralizeFFSM.main(args_2);
+				GeneralizeFfsmEdited.main(args_2);
 
 			}
 		} catch (Exception e) {

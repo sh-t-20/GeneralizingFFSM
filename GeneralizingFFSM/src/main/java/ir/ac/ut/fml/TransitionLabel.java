@@ -1,5 +1,7 @@
 package ir.ac.ut.fml;
 
+import java.util.Objects;
+
 import net.automatalib.words.Word;
 
 public class TransitionLabel {
@@ -28,14 +30,24 @@ public class TransitionLabel {
 		this.output = output;
 	}
 
-	public boolean equals(TransitionLabel t) {
-		if (this.input.equals(t.getInput()) && this.output.equals(t.getOutput())) {
-			return true;
-		} else
-			return false;
-	}
-
 	public void printTransition() {
 		System.out.println("input:" + this.getInput() + ", output:" + this.getOutput());
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof TransitionLabel))
+			return false;
+
+		TransitionLabel t = (TransitionLabel) o;
+		return Objects.equals(this.input, t.input) && Objects.equals(this.output, t.output);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(input, output);
+	}
+
 }

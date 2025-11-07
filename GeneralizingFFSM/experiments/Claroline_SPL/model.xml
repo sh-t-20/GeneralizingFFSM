@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Claroline">
+			<alt abstract="true" mandatory="true" name="User">
+				<feature name="UnregistredUser"/>
+				<alt abstract="true" name="RegisteredUser">
+					<feature name="Admin"/>
+					<feature name="Teacher"/>
+				</alt>
+			</alt>
+			<and abstract="true" mandatory="true" name="Subscription">
+				<feature name="OpenSubscription"/>
+				<feature name="LostPassword"/>
+			</and>
+			<and abstract="true" mandatory="true" name="Course">
+				<and abstract="true" mandatory="true" name="Tools">
+					<feature name="CourseForum"/>
+					<feature name="CourseGroup"/>
+					<feature name="CourseDescription"/>
+					<feature name="CourseWiki"/>
+					<feature name="CourseWork"/>
+					<feature name="CourseDiscussion"/>
+					<feature name="CourseUser"/>
+					<feature name="CourseAgenda"/>
+					<feature name="CourseDocument"/>
+					<feature name="CourseLearnPath"/>
+					<feature name="CourseAnnoucements"/>
+					<feature mandatory="true" name="CourseIndex"/>
+					<feature name="CourseExercise"/>
+				</and>
+			</and>
+		</and>
+	</struct>
+</featureModel>

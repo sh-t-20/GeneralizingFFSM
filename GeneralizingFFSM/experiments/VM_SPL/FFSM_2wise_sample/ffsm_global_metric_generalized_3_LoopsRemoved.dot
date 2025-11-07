@@ -23,9 +23,9 @@ digraph g {
 	s0 -> s2 [label="euro / ok() [((EUR))]"];
 	s1 -> s3 [label="no_sugar / ok() [()]"];
 	s1 -> s4 [label="sugar / ok() [()]"];
-	s2 -> s3 [label="no_sugar / ok() [((CAP and not TEA and not COF) or (CAP and not TEA and COF and TEA and not CAP) or (CAP and COF and TEA and not CAP) or (COF and TEA and not CAP))]"];
+	s2 -> s3 [label="no_sugar / ok() [((CAP and not TEA and not COF) or (COF and TEA and not CAP))]"];
 	s2 -> s5 [label="no_sugar / ok() [((COF and not TEA and not CAP))]"];
-	s2 -> s4 [label="sugar / ok() [((CAP and not TEA and not COF) or (CAP and not TEA and COF and TEA and not CAP) or (CAP and COF and TEA and not CAP) or (COF and TEA and not CAP))]"];
+	s2 -> s4 [label="sugar / ok() [((CAP and not TEA and not COF) or (COF and TEA and not CAP))]"];
 	s2 -> s6 [label="sugar / ok() [((COF and not TEA and not CAP))]"];
 	s3 -> s7 [label="cap / ok() [((CAP))]"];
 	s3 -> s8 [label="coffee / ok() [((COF))]"];

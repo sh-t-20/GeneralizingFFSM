@@ -63,8 +63,8 @@ digraph g {
 	s16 -> s13 [label="pour_sugar / ok() [()]"];
 	s17 -> s14 [label="pour_sugar / ok() [()]"];
 	s18 -> s15 [label="pour_sugar / ok() [()]"];
-	s19 -> s23 [label="pour_coffee / ok() [((CAP and not COF))]"];
 	s19 -> s20 [label="pour_coffee / ok() [((COF and CAP))]"];
+	s19 -> s23 [label="pour_coffee / ok() [((CAP and not COF))]"];
 	s20 -> s24 [label="display_done / ok() [()]"];
 	s21 -> s25 [label="pour_coffee / ok() [((CAP and not COF))]"];
 	s22 -> s26 [label="display_done / ok() [()]"];

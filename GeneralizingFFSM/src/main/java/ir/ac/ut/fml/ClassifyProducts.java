@@ -48,6 +48,10 @@ public class ClassifyProducts {
 			File[] sample_products_files = sample_products_dir.listFiles();
 
 			List<Feature[]> sample_products_features_list = new ArrayList<>();
+
+			int max_products_count = 1000;
+			int count = 0;
+
 			for (File s : sample_products_files) {
 				if (s.getName().endsWith("config")) {
 //					System.out.println(s.getName());
@@ -62,7 +66,7 @@ public class ClassifyProducts {
 //			}
 
 			for (File c : all_products_files) {
-				if (c.getName().endsWith("config")) {
+				if (c.getName().endsWith("config") && count < max_products_count) {
 //					System.out.println(c.getName());
 					SimpleConfiguration config = FtsUtils.getInstance().loadConfiguration(c.getPath());
 					Feature[] features = config.getFeatures();
@@ -80,10 +84,11 @@ public class ClassifyProducts {
 					if (available_in_sample == 0) {
 						File new_file = new File(new_products_dir.getAbsolutePath() + File.separator + c.getName());
 						Files.copy(c, new_file);
+						count += 1;
 					}
 				}
-
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

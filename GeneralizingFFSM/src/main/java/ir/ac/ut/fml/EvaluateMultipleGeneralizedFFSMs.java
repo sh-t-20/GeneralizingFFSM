@@ -5,7 +5,6 @@ import java.io.File;
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 public class EvaluateMultipleGeneralizedFFSMs {
@@ -23,9 +22,6 @@ public class EvaluateMultipleGeneralizedFFSMs {
 			// create the Options
 			Options options = createOptions();
 
-			// automatically generate the help statement
-			HelpFormatter formatter = new HelpFormatter();
-
 			// parse the command line arguments
 			CommandLine line = parser.parse(options, args);
 
@@ -40,7 +36,10 @@ public class EvaluateMultipleGeneralizedFFSMs {
 
 //			String[] similarity_metrics = { "global_metric", "w2_metric", "bfs_metric" };
 			String[] similarity_metrics = { "w2_metric", "bfs_metric" };
+//			String[] similarity_metrics = { "w2_metric" };
+//			String[] similarity_metrics = { "bfs_metric" };
 			String[] generalization_methods = { "1", "3" };
+//			String[] generalization_methods = { "3" };
 			for (String similarity_metric : similarity_metrics) {
 				for (String generalization_method : generalization_methods) {
 					String ffsm_string = dir1_string + File.separator + "ffsm_" + similarity_metric + "_generalized_"
@@ -51,8 +50,7 @@ public class EvaluateMultipleGeneralizedFFSMs {
 
 					System.out.println(ffsm_string);
 
-					EvaluateGeneralizedFFSM test = new EvaluateGeneralizedFFSM();
-					test.main(args_2);
+					EvaluateGeneralizedFFSM.main(args_2);
 
 				}
 			}
